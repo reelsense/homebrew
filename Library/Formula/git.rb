@@ -1,25 +1,25 @@
 class Git < Formula
   desc "Distributed revision control system"
   homepage "https://git-scm.com"
-  url "https://www.kernel.org/pub/software/scm/git/git-2.4.5.tar.xz"
-  sha256 "c31a5f5f72e025f8fe26845032a06683c7e5c1a73236c2353b5606ddd22e0494"
+  url "https://www.kernel.org/pub/software/scm/git/git-2.6.1.tar.xz"
+  sha256 "fc7c727745d5eb0d796a16dc7c4b999c184830110e0aeb592c788597cc8e9ccd"
 
   head "https://github.com/git/git.git", :shallow => false
 
   bottle do
-    sha256 "cc03062fd2b580213b212fb8ebc04ab5d4a7f1c2758e4b190686bc45561a1ea3" => :yosemite
-    sha256 "13644151c99b995769c564f52eba2c34d2c5a9822ae5507f64c7cca6d230f3cd" => :mavericks
-    sha256 "93c79f322e9364b4a86e88c31fc75ae43146ce8e82e6d8c4630d13ccaeca732b" => :mountain_lion
+    sha256 "a3f97813470aeda3777b747fa3c3d0c297b27b9a2f48d807859627350d52d290" => :el_capitan
+    sha256 "a4073629edb92321d19d654ff3a18b5a88432e5a0b60f032053569aa924fb605" => :yosemite
+    sha256 "422b46aa1c7e7bc5a57e8ddc898553e0f5c74c6ffed71aeafe8ee2d80b0a9336" => :mavericks
   end
 
   resource "man" do
-    url "https://www.kernel.org/pub/software/scm/git/git-manpages-2.4.5.tar.xz"
-    sha256 "abe54047035302a22aed13118c4fcb58e423d0c1ba61dcbc3843b822246fed3e"
+    url "https://www.kernel.org/pub/software/scm/git/git-manpages-2.6.1.tar.xz"
+    sha256 "e4cf64edcecd284d9ef4e6ca7fa0e8556d2414b5d9881a9abfe477f95b416391"
   end
 
   resource "html" do
-    url "https://www.kernel.org/pub/software/scm/git/git-htmldocs-2.4.5.tar.xz"
-    sha256 "69f0297d4ba56597ae5837366d5fd87c450f1476a743a5933d2974fdad6e8285"
+    url "https://www.kernel.org/pub/software/scm/git/git-htmldocs-2.6.1.tar.xz"
+    sha256 "791487ebd5a25456d41d8825ef450fdf3214898a328028d01acdb21a668052da"
   end
 
   option "with-blk-sha1", "Compile with the block-optimized SHA1 implementation"
@@ -59,9 +59,9 @@ class Git < Formula
         #{MacOS.active_developer_dir}
         /Library/Developer/CommandLineTools
         /Applications/Xcode.app/Contents/Developer
-      ].uniq.map { |p|
+      ].uniq.map do |p|
         "#{p}/Library/Perl/#{perl_version}/darwin-thread-multi-2level"
-      }.join(":")
+      end.join(":")
     end
 
     unless quiet_system ENV["PERL_PATH"], "-e", "use ExtUtils::MakeMaker"

@@ -1,14 +1,14 @@
 class Ffmpeg < Formula
   desc "Play, record, convert, and stream audio and video"
   homepage "https://ffmpeg.org/"
-  url "https://ffmpeg.org/releases/ffmpeg-2.7.1.tar.bz2"
-  sha256 "7e07b97d2415feeae9c9b5595e35e7b7aab33207e81bf9f8c0d1eece43f7f720"
+  url "https://ffmpeg.org/releases/ffmpeg-2.8.1.tar.bz2"
+  sha256 "e2ed5ab28dee1af94336739173eb0019afc21a54e38a96f4e3208e94a07866e2"
   head "https://github.com/FFmpeg/FFmpeg.git"
 
   bottle do
-    sha256 "326c2a662c90fe4e90432b8a6df473cecaede433602241da26c52c68a0402f9f" => :yosemite
-    sha256 "423dc107257192f4aec70fb2b1e83fcafa3247b70590c00edd2b37f388a887dc" => :mavericks
-    sha256 "576c3361d064f2472f9a232322c72a05acf1c62137a36395c8de5d0e5a02d173" => :mountain_lion
+    sha256 "88afcfe4fd2e9c4fcca2e5d6873ee0ebbd937f69c843423a5bd1c34e9286392e" => :el_capitan
+    sha256 "fb688fc98e02e27503bed1d1d6c809bd974c1e07c1071082aa253403994882ac" => :yosemite
+    sha256 "b6cd8430b2efe23f78af47cf0e05ce79787f7694ea28326d60354e7ed1bd1ecf" => :mavericks
   end
 
   option "without-x264", "Disable H.264 encoder"
@@ -70,6 +70,7 @@ class Ffmpeg < Formula
   depends_on "libssh" => :optional
   depends_on "webp" => :optional
   depends_on "zeromq" => :optional
+  depends_on "libbs2b" => :optional
 
   def install
     args = ["--prefix=#{prefix}",
@@ -81,8 +82,10 @@ class Ffmpeg < Formula
             "--enable-avresample",
             "--cc=#{ENV.cc}",
             "--host-cflags=#{ENV.cflags}",
-            "--host-ldflags=#{ENV.ldflags}",
+            "--host-ldflags=#{ENV.ldflags}"
            ]
+
+    args << "--enable-opencl" if MacOS.version > :lion
 
     args << "--enable-libx264" if build.with? "x264"
     args << "--enable-libmp3lame" if build.with? "lame"
@@ -113,6 +116,7 @@ class Ffmpeg < Formula
     args << "--enable-libx265" if build.with? "x265"
     args << "--enable-libwebp" if build.with? "webp"
     args << "--enable-libzmq" if build.with? "zeromq"
+    args << "--enable-libbs2b" if build.with? "libbs2b"
     args << "--disable-indev=qtkit" if build.without? "qtkit"
 
     if build.with? "openjpeg"
