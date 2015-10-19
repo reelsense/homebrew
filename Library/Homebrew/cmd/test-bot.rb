@@ -547,13 +547,13 @@ module Homebrew
         test "brew", "postinstall", *changed_dependences
       end
       formula_fetch_options = []
-      formula_fetch_options << "--build-bottle" unless ARGV.include? "--fast"
+      formula_fetch_options << "--build-bottle" if !ARGV.include?("--fast") && !formula.bottle_disabled?
       formula_fetch_options << "--force" if ARGV.include? "--cleanup"
       formula_fetch_options << canonical_formula_name
       test "brew", "fetch", "--retry", *formula_fetch_options
       test "brew", "uninstall", "--force", canonical_formula_name if formula.installed?
       install_args = ["--verbose"]
-      install_args << "--build-bottle" unless ARGV.include? "--fast"
+      install_args << "--build-bottle" if !ARGV.include?("--fast") && !formula.bottle_disabled?
       install_args << "--HEAD" if ARGV.include? "--HEAD"
 
       # Pass --devel or --HEAD to install in the event formulae lack stable. Supports devel-only/head-only.
@@ -582,7 +582,7 @@ module Homebrew
       audit_args << "--strict" << "--online" if @added_formulae.include? formula_name
       test "brew", "audit", *audit_args
       if install_passed
-        if formula.stable? && !ARGV.include?("--fast")
+        if formula.stable? && !ARGV.include?("--fast") && !formula.bottle_disabled?
           bottle_args = ["--verbose", "--rb", canonical_formula_name]
           bottle_args << "--keep-old" if ARGV.include? "--keep-old"
           test "brew", "bottle", *bottle_args
