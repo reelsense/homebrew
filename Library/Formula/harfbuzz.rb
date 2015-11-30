@@ -1,8 +1,14 @@
 class Harfbuzz < Formula
   desc "OpenType text shaping engine"
   homepage "https://wiki.freedesktop.org/www/Software/HarfBuzz/"
-  url "http://www.freedesktop.org/software/harfbuzz/release/harfbuzz-1.1.1.tar.bz2"
-  sha256 "0c366a77276fa69d40006cf8a2f2dbcd82f3fb406f3960c3c3a0d34dd3a0f06c"
+  url "http://www.freedesktop.org/software/harfbuzz/release/harfbuzz-1.1.2.tar.bz2"
+  sha256 "4a2c5790bd3db7c3ca8c02e4858f2fd592df7932c1d2fa9f6b99acbce0f8461f"
+
+  bottle do
+    sha256 "3377d63354b90ead95f75469a501ff2406811d966ebb952a922b482d4c1358c0" => :el_capitan
+    sha256 "634e3efd520d92425b74a0338cc29b6e5fd5fb62e4004f57dd8d7a0487444e7c" => :yosemite
+    sha256 "805cd40e1e33d7d5753609726fa92de8bcc7e5c76b03074f6ff96115f8a52f96" => :mavericks
+  end
 
   head do
     url "https://github.com/behdad/harfbuzz.git"
@@ -11,12 +17,6 @@ class Harfbuzz < Formula
     depends_on "autoconf" => :build
     depends_on "automake" => :build
     depends_on "libtool" => :build
-  end
-
-  bottle do
-    sha256 "2367657dbdf74db1e757a5ffff380d3180d2b3893909fce7c3c293683422ec3b" => :el_capitan
-    sha256 "f779b0ba8b70175dbc7227a46425a869bbd0f431d53ded7731434a8a71eeff2e" => :yosemite
-    sha256 "3454ebf17a5fe7b841c9e97106ac652872130be36020b0646d7175be7728618f" => :mavericks
   end
 
   option "with-cairo", "Build command-line utilities that depend on Cairo"
