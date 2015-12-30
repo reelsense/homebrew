@@ -1041,12 +1041,13 @@ class Formula
   # less consistent and the standard parameters are more memorable.
   def std_cmake_args
     %W[
-      -DCMAKE_C_FLAGS_RELEASE=
-      -DCMAKE_CXX_FLAGS_RELEASE=
+      -DCMAKE_C_FLAGS_RELEASE=-DNDEBUG
+      -DCMAKE_CXX_FLAGS_RELEASE=-DNDEBUG
       -DCMAKE_INSTALL_PREFIX=#{prefix}
       -DCMAKE_BUILD_TYPE=Release
       -DCMAKE_FIND_FRAMEWORK=LAST
       -DCMAKE_VERBOSE_MAKEFILE=ON
+      -DCMAKE_OSX_SYSROOT=#{MacOS.sdk_path}
       -Wno-dev
     ]
   end
