@@ -1,16 +1,15 @@
 class Openvpn < Formula
   desc "SSL VPN implementing OSI layer 2 or 3 secure network extension"
   homepage "https://openvpn.net/index.php/download/community-downloads.html"
-  url "https://swupdate.openvpn.org/community/releases/openvpn-2.3.9.tar.gz"
-  mirror "http://build.openvpn.net/downloads/releases/openvpn-2.3.9.tar.gz"
-  sha256 "2c12fe9ea641ac1291e70322cc500641c84e5903dd4f40bf2eda7e9f209b2f9c"
+  url "https://swupdate.openvpn.org/community/releases/openvpn-2.3.10.tar.gz"
+  mirror "http://build.openvpn.net/downloads/releases/openvpn-2.3.10.tar.gz"
+  sha256 "f8b0b5b92e35bbca1db1a7e6b49e04639e45634e9accd460459b40b2c99ec8f6"
 
   bottle do
     cellar :any
-    revision 1
-    sha256 "882a30fe91692b21da5a003d392bc87c87abd2e064a51f6466c95cf0b25924ce" => :el_capitan
-    sha256 "4da6b041921df90a929821be483a67e3bb3e0a5ea4b28aed9a93cbab706b45e8" => :yosemite
-    sha256 "c2fb3da6a522f8f64330c238c9e5266cdea1d23e908113bb2b82eeb80f3e884d" => :mavericks
+    sha256 "0306a9f03cc1dfbb13e7f694cc1212b71d258f792077f1cc44d0b5f8d5ac14ac" => :el_capitan
+    sha256 "6a7849f46f06b0e090f489974cbb474751b14284a25f41b40d1cecd1430833c4" => :yosemite
+    sha256 "35e58ca6072dc8cb48fb9cfe85d9518f9b0530d4578f5f6ccf7d720cef7593da" => :mavericks
   end
 
   depends_on "lzo"
