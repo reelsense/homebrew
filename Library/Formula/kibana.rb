@@ -1,18 +1,18 @@
 class Kibana < Formula
   desc "Analytics and search dashboard for Elasticsearch"
   homepage "https://www.elastic.co/products/kibana"
-  url "https://github.com/elastic/kibana.git", :tag => "v4.4.0", :revision => "07cb4d6aecddbc9dea1a26f55778b32edcef49df"
+  url "https://github.com/elastic/kibana.git", :tag => "v4.4.1", :revision => "57474ae1b8647bccc5057792af7ab3f962f7521f"
   head "https://github.com/elastic/kibana.git"
 
   bottle do
-    sha256 "261acccf0e7bdb137e3f4cdae0b90a372dd31348fbb42bb7159af41e46cfa702" => :el_capitan
-    sha256 "b2625519212eb19284ac21926bb259d0d582a9cd35b2ad9af754aedf810c0ee2" => :yosemite
-    sha256 "eea29f8e14dde46237b85c5ebac7793a3d461847535e6a142b4698f676637929" => :mavericks
+    sha256 "b1574e0304b8ef6dda8bc05d5a9a60b67eceb44c0a3e4af14234a42f4fbe427f" => :el_capitan
+    sha256 "8ff1628b114f30af4e407ba7710e3eda76323ddd857ff71f09f89e6c01eda2f3" => :yosemite
+    sha256 "8467ffb8a12a06fef5d2414f874f0c557f8457f1fab0f8ab0e07bd2aff344a97" => :mavericks
   end
 
   resource "node" do
-    url "https://nodejs.org/dist/v0.12.9/node-v0.12.9.tar.gz"
-    sha256 "35daad301191e5f8dd7e5d2fbb711d081b82d1837d59837b8ee224c256cfe5e4"
+    url "https://nodejs.org/dist/v0.12.10/node-v0.12.10.tar.gz"
+    sha256 "edbd3710512ec7518a3de4cabf9bfee6d12f278eef2e4b53422c7b063f6b976d"
   end
 
   def install
@@ -62,16 +62,16 @@ class Kibana < Formula
 
   def post_install
     ln_s etc/"kibana", prefix/"config"
-
-    (var/"lib/kibana/installedPlugins").mkpath
-    ln_s var/"lib/kibana/installedPlugins", prefix/"installedPlugins"
+    (prefix/"installedPlugins").mkdir
   end
 
   plist_options :manual => "kibana"
 
   def caveats; <<-EOS.undent
-    Plugins: #{var}/kibana/installedPlugins/
     Config: #{etc}/kibana/
+    If you wish to preserve your plugins upon upgrade, make a copy of
+    #{prefix}/installedPlugins before upgrading, and copy it into the
+    new keg location after upgrading.
     EOS
   end
 
