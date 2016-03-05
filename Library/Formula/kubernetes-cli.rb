@@ -10,15 +10,16 @@ class KubernetesCli < Formula
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "0ebbae000a1f339588e052d1aba970b8d04fc4050aa2362bc865198acf535de5" => :el_capitan
-    sha256 "47bc25716067a1804506be5d670c148dc75c750cadad0475af0ee9048c6ee3b7" => :yosemite
-    sha256 "afb9bb03e2df5018d92ee7a09c2f3e7d080736094dd1150d1b5f4f587f805ab1" => :mavericks
+    revision 1
+    sha256 "3d55385a010d6cb3dbe8de1335d3fcb92d19f348478ff9e8050eea17f1df0b29" => :el_capitan
+    sha256 "2ba21000c6252026fccbf1a4ff875577c834800e038741bbeafb3bd75c4cfce9" => :yosemite
+    sha256 "13213f9b7230977fc931960ef025cc9ff40e93886d0958b41c2e0f152482d486" => :mavericks
   end
 
   devel do
-    url "https://github.com/kubernetes/kubernetes/archive/v1.2.0-alpha.4.tar.gz"
-    sha256 "0c1d1a57ceb5beffcc7f8852d0d680ee37fc8e21814c74a0ea09e711e2c8aa44"
-    version "1.2.0-alpha.4"
+    url "https://github.com/kubernetes/kubernetes/archive/v1.2.0-alpha.8.tar.gz"
+    sha256 "3ae607179a4b9adc7ed34f3877645e6e4cf9dad9bd17206bafb95019d38f60dc"
+    version "1.2.0-alpha.8"
   end
 
   depends_on "go" => :build
