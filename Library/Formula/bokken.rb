@@ -2,17 +2,19 @@ class Bokken < Formula
   desc "GUI for the Pyew and Radare projects"
   homepage "http://bokken.re/"
   url "https://inguma.eu/attachments/download/212/bokken-1.8.tar.gz"
+  mirror "https://www.mirrorservice.org/sites/ftp.netbsd.org/pub/pkgsrc/distfiles/bokken-1.8.tar.gz"
   sha256 "1c73885147dfcf0a74ba4d3dd897a6aabc11a4a42f95bd1269782d0b2e1a11b9"
+  revision 1
 
   bottle do
     cellar :any
-    sha256 "8c7620112d4780191a49bd6d45aa79dfec7be1051959af5eb76e2b370b6b0eeb" => :el_capitan
-    sha256 "a08dbad0b91ed9aee3af298e4e493ff9d27960de228bec2b15833d64355814ff" => :yosemite
-    sha256 "75e3e223d233e6340f02a927ebb0c9fdcfbc46ec13e323136724fd971a1078fc" => :mavericks
+    sha256 "7c897f3d124857458ece2ddbe6fbf4477eec6a6e1845e5fe877ff34bc9946fb8" => :el_capitan
+    sha256 "12499141d1e78fee72d12550ea95b07f5d8e96c5dc9f7426b4329f8d7f309821" => :yosemite
+    sha256 "474b73f47f9cb35e31b2219cdad5538963f1fd2f3fcaae47a5fc3c5727509f40" => :mavericks
   end
 
-  depends_on :python
   depends_on "graphviz"
+  depends_on "librsvg"
   depends_on "pygtk"
   depends_on "pygtksourceview"
   depends_on "radare2"
@@ -32,6 +34,7 @@ class Bokken < Formula
     resource("distorm64").stage do
       inreplace "src/pydistorm.h", "python2\.5", "python2.7"
       cd "build/mac" do
+        inreplace "Makefile", "-lpython", "-undefined dynamic_lookup"
         system "make"
         mkdir_p libexec/"distorm64"
         (libexec/"distorm64").install "libdistorm64.dylib"
