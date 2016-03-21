@@ -8,9 +8,10 @@ class Bokken < Formula
 
   bottle do
     cellar :any
-    sha256 "7c897f3d124857458ece2ddbe6fbf4477eec6a6e1845e5fe877ff34bc9946fb8" => :el_capitan
+    revision 1
+    sha256 "b1af4c645b8f74359fa1d3f72e8d01148be47cb94fe3cb5fe2743e0f0f11fb25" => :el_capitan
     sha256 "12499141d1e78fee72d12550ea95b07f5d8e96c5dc9f7426b4329f8d7f309821" => :yosemite
-    sha256 "474b73f47f9cb35e31b2219cdad5538963f1fd2f3fcaae47a5fc3c5727509f40" => :mavericks
+    sha256 "cfbbed6a3f39b9d714ac7abaecf802050a14f0811684ce554d2eb1fc21e6a608" => :mavericks
   end
 
   depends_on "graphviz"
@@ -20,13 +21,13 @@ class Bokken < Formula
   depends_on "radare2"
 
   resource "distorm64" do
-    url "http://ftp.de.debian.org/debian/pool/main/d/distorm64/distorm64_1.7.30.orig.tar.gz"
+    url "https://mirrorservice.org/sites/ftp.debian.org/debian/pool/main/d/distorm64/distorm64_1.7.30.orig.tar.gz"
     sha256 "98b218e5a436226c5fb30d3b27fcc435128b4e28557c44257ed2ba66bb1a9cf1"
   end
 
   resource "pyew" do
     # Upstream only provides binary packages so pull from Debian.
-    url "http://ftp.de.debian.org/debian/pool/main/p/pyew/pyew_2.0.orig.tar.gz"
+    url "https://mirrorservice.org/sites/ftp.debian.org/debian/pool/main/p/pyew/pyew_2.0.orig.tar.gz"
     sha256 "64a4dfb1850efbe2c9b06108697651f9ff25223fd132eec66c6fe84d5ecc17ae"
   end
 
